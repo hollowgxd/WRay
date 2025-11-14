@@ -12,13 +12,13 @@ class ProxyConfiguratorScreen extends StatefulWidget {
 class _ProxyConfiguratorScreenState extends State<ProxyConfiguratorScreen> {
   int index = 0;
 
-  final screens = [
-    const HomeScreen(),
-    const ImportScreen(),
-  ];
-
   @override
   Widget build(BuildContext context) {
+    final screens = [
+      const HomeScreen(),
+      const ImportScreen(),
+    ];
+
     return Scaffold(
       body: screens[index],
       bottomNavigationBar: BottomNavigationBar(
