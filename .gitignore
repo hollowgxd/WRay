@@ -6,6 +6,11 @@ build/
 .packages
 .pub-cache/
 .pub/
+android/
+ios/
+windows/
+linux/
+macos/
 
 # IntelliJ / VSCode
 .idea/
