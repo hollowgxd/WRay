@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'screens/proxy_configurator_screen.dart';
 import 'theme/theme.dart';
+import 'screens/proxy_configurator_screen.dart';
+
 void main() {
-  
   runApp(const MyApp());
 }
 
