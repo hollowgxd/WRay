@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'screens/proxy_configurator_screen.dart';
-
+import 'theme/theme.dart';
 void main() {
+  
   runApp(const MyApp());
 }
 
@@ -12,6 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: appTheme,
       home: const ProxyConfiguratorScreen(),
     );
   }

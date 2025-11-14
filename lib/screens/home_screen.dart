@@ -17,31 +17,74 @@ class _HomeScreenState extends State<HomeScreen> {
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            // ---------- Мониторинг СВЕРХУ ----------
-            Container(
-              padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                color: Colors.white10,
-                borderRadius: BorderRadius.circular(16),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  Text(
-                    'Мониторинг',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
-                  ),
-                  SizedBox(height: 12),
-                  Text('• Скорость: —'),
-                  Text('• Пинг: —'),
-                  Text('• Активные подключения: —'),
-                ],
-              ),
-            ),
+            // ---------- Мониторинг сверху ----------
+            Expanded(
+  flex: 2,
+  child: Container(
+    padding: const EdgeInsets.all(24),
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(18),
+      gradient: LinearGradient(
+        colors: [
+          Colors.white10.withOpacity(0.05),
+          Colors.pinkAccent.withOpacity(0.06),
+        ],
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+      ),
+      border: Border.all(
+        width: 1.3,
+        color: Colors.pinkAccent.withOpacity(0.3),
+      ),
+    ),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Text(
+          'Мониторинг',
+          style: TextStyle(
+            fontSize: 26,
+            fontWeight: FontWeight.w800,
+            color: Colors.white,
+          ),
+        ),
+        const SizedBox(height: 20),
+
+        Row(
+          children: const [
+            Icon(Icons.speed, color: Colors.pinkAccent, size: 24),
+            SizedBox(width: 12),
+            Text('Скорость: —', style: TextStyle(fontSize: 20)),
+          ],
+        ),
+        const SizedBox(height: 14),
+
+        Row(
+          children: const [
+            Icon(Icons.wifi_tethering, color: Colors.pinkAccent, size: 24),
+            SizedBox(width: 12),
+            Text('Пинг: —', style: TextStyle(fontSize: 20)),
+          ],
+        ),
+        const SizedBox(height: 14),
+
+        Row(
+          children: const [
+            Icon(Icons.device_hub, color: Colors.pinkAccent, size: 24),
+            SizedBox(width: 12),
+            Text('Активные подключения: —', style: TextStyle(fontSize: 20)),
+          ],
+        ),
+      ],
+    ),
+  ),
+),
+
 
             const Spacer(),
 
-            // ---------- ЖИРНЫЙ нижний слайдер ----------
+            // ---------- Жирный нижний слайдер ----------
             GestureDetector(
               onTap: () => setState(() => connected = !connected),
               child: AnimatedContainer(
@@ -50,10 +93,34 @@ class _HomeScreenState extends State<HomeScreen> {
                 width: double.infinity,
                 padding: const EdgeInsets.symmetric(horizontal: 22),
                 decoration: BoxDecoration(
-                  color: connected
-                      ? Colors.greenAccent.shade700
-                      : Colors.grey.shade800,
-                  borderRadius: BorderRadius.circular(18),
+                  borderRadius: BorderRadius.circular(20),
+                  gradient: LinearGradient(
+                    colors: connected
+                        ? [
+                            const Color(0xFF00FFB7),     // neon green
+                            const Color(0xFF008F6B),
+                          ]
+                        : [
+                            const Color(0xFF2A2A38),
+                            const Color(0xFF191922),
+                          ],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                  boxShadow: connected
+                      ? [
+                          BoxShadow(
+                            color: Colors.greenAccent.withOpacity(0.4),
+                            blurRadius: 20,
+                            spreadRadius: 2,
+                          )
+                        ]
+                      : [
+                          BoxShadow(
+                            color: Colors.pinkAccent.withOpacity(0.15),
+                            blurRadius: 10,
+                          )
+                        ],
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -67,11 +134,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     Switch(
                       value: connected,
-                      onChanged: (v) =>
-                          setState(() => connected = v),
-                      activeColor: Colors.white,
-                      thumbColor: WidgetStateProperty.all(Colors.white),
-                      trackColor: WidgetStateProperty.all(Colors.black26),
+                      onChanged: (v) => setState(() => connected = v),
                     ),
                   ],
                 ),
