@@ -1,4 +1,4 @@
-# vless_client
+# simple proxy configurator
 
 A new Flutter project.
 
